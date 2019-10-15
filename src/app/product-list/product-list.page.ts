@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ProductListPage implements OnInit {
 
   constructor() { }
-
+  //Esto es una prueba
   ngOnInit() {
   }
 
