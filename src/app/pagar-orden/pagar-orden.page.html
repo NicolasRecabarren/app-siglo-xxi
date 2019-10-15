@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <div class="brand" style="text-align: left;">
+      <img src="../../assets/img/logo_negro.png" alt="" style="float: right;height: 40px;">
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="header-content">
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col>
+        <ion-button size="small" href="/carta" color="light" style="float: right;">Volver</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <h1>Resumen de su orden</h1>
+  <span class="separador-horizontal"></span>
+  <ion-grid class="info-pedido">
+    <ion-row>
+      <ion-col size="3">Orden N°</ion-col>
+      <ion-col size="3">103545120</ion-col>
+      <ion-col size="1"></ion-col>
+      <ion-col size="2">Fecha</ion-col>
+      <ion-col size="3">15/10/2019</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3">Mesa</ion-col>
+      <ion-col size="3">16</ion-col>
+      <ion-col size="1"></ion-col>
+      <ion-col size="2">Hora</ion-col>
+      <ion-col size="3">14:45:36</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="detalle-pedido">
+    <ion-row>
+      <ion-col size="8">Producto</ion-col>
+      <ion-col size="2">Cant.</ion-col>
+      <ion-col size="2">Total</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">Cazuela de vacuno</ion-col>
+      <ion-col size="2">1</ion-col>
+      <ion-col size="2" class="text-right">$4.500</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">Coca Cola (individual)</ion-col>
+      <ion-col size="2">2</ion-col>
+      <ion-col size="2" class="text-right">$3.200</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">Pie de limón</ion-col>
+      <ion-col size="2">1</ion-col>
+      <ion-col size="2" class="text-right">$2.000</ion-col>
+    </ion-row>
+
+    <span class="separador-horizontal"></span>
+
+    <ion-row>
+      <ion-col size="8" class="fixed-padding">Total</ion-col>
+      <ion-col size="2" class="fixed-padding"></ion-col>
+      <ion-col size="2" class="fixed-padding text-right">$9.700</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8" class="fixed-padding">Propina sugerida (10%)</ion-col>
+      <ion-col size="2" class="fixed-padding"></ion-col>
+      <ion-col size="2" class="fixed-padding text-right">$970</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8" style="padding-top: 10px;font-weight: bold;font-size: 11px;">Total c/ propina</ion-col>
+      <ion-col size="1" style="padding-top: 10px;"></ion-col>
+      <ion-col size="3" style="padding-top: 10px;font-weight: bold;font-size: 11px;" class="text-right">$10.870</ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-button size="small" expand="full" color="danger" style="margin-top: 25px;">Pagar total</ion-button>
+  <ion-button size="small" expand="full" color="danger">Pagar total c/ propina</ion-button>
+</ion-content>

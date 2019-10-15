@@ -32,6 +32,10 @@
   }
 }
 
+ion-grid{
+  margin-top: 15px;
+}
+
 .home-card-1{
   @include home-card();
   background: url(../../assets/img/home-plato_cubiertos.jpg) no-repeat center ;
