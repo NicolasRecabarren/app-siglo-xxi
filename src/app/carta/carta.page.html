@@ -10,37 +10,63 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
+  <ion-grid class="header-content">
     <ion-row>
-      <ion-col><h1>Carta</h1></ion-col>
+      <ion-col></ion-col>
       <ion-col>
         <ion-button size="small" href="/home" color="light" style="float: right;">Volver</ion-button>
       </ion-col>
     </ion-row>
-    <span class="separador-horizontal"></span>
   </ion-grid>
+
+  <h1>Carta</h1>
+  <p class="subtitle-page">Conozca aquí nuestra gran variedad de productos de origen 100% chileno. Puedes encontrar nuestros menús sugeridos o ¡pedir productos a tu gusto!</p>
+  <span class="separador-horizontal"></span>
   
   <ion-grid>
     <ion-row>
-      <ion-col class="home-card-1">
+      <ion-col class="home-card" style="background: url(../../assets/img/carta-menus.jpg) no-repeat center;background-size: cover;">
         <div class="opacity-card"></div>
-        <a href="/product-list">Aperitivos y Entrantes</a>
+        <a href="/product-list">Menús</a>
       </ion-col>
-      <ion-col class="home-card-2">
+    </ion-row>
+    <ion-row>
+      <ion-col class="home-card" style="background: url(../../assets/img/carta-aperitivos_y_entrantes.jpg) no-repeat center;background-size: cover;">
+        <div class="opacity-card"></div>
+        <a href="/product-list">Aperitivos y entrantes</a>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="home-card" style="background: url(../../assets/img/carta-fondo.jpg) no-repeat center;background-size: cover;">
         <div class="opacity-card"></div>
         <a href="/product-list">Fondo</a>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col class="home-card-3">
+      <ion-col class="home-card" style="background: url(../../assets/img/carta-vegan.jpg) no-repeat center;background-size: cover;">
         <div class="opacity-card"></div>
-        <a href="/product-list">Bebidas y Licores</a>
+        <a href="/product-list">Ensaladas</a>
       </ion-col>
-      <ion-col class="home-card-4">
+    </ion-row>
+    <ion-row>
+      <ion-col class="home-card" style="background: url(../../assets/img/carta-postres.jpg) no-repeat center;background-size: cover;">
         <div class="opacity-card"></div>
         <a href="/product-list">Postres</a>
       </ion-col>
     </ion-row>
+    <ion-row>
+      <ion-col class="home-card" style="background: url(../../assets/img/carta-bebestibles.jpg) no-repeat center;background-size: cover;">
+        <div class="opacity-card"></div>
+        <a href="/product-list">Bebidas y licores</a>
+      </ion-col>
+    </ion-row>
   </ion-grid>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="light" size="small">
+      <ion-icon name="arrow-dropdown"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>
     

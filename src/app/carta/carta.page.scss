@@ -1,7 +1,13 @@
 h1{
+  padding: 5px;
   margin-top: 5px;
-  margin-bottom: 0;
 }
+.header-content{
+  background: url(../../assets/img/header-productos.jpg) no-repeat center center;
+  background-size: cover;
+  height: 90px;
+}
+
 @mixin todo-ancho-largo {
   top: 0;
   left: 0;
@@ -10,10 +16,10 @@ h1{
   position: absolute;
 }
 
-@mixin home-card() {
+.home-card {
   display: block;
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 85px;
   list-style: none;
   position: relative;
   border-radius: 5px;
@@ -24,7 +30,7 @@ h1{
     text-decoration: none;
     color: #fff;
     margin: 0;
-    padding: 95px 10px 10px 10px;
+    padding: 30px 10px 10px 10px;
     text-align: center;
     font-size: 20px;
   }
@@ -34,27 +40,4 @@ h1{
     opacity: 0.5;
     border-radius: 5px;
   }
-}
-
-.home-card-1{
-  @include home-card();
-  background: url(../../assets/img/carta-aperitivos_y_entrantes.jpg) no-repeat center ;
-  background-size: cover;
-  margin-right: 5px;
-}
-.home-card-2{
-  @include home-card();
-  background: url(../../assets/img/carta-fondo.jpg) no-repeat center ;
-  background-size: cover;
-}
-.home-card-3{
-  @include home-card();
-  background: url(../../assets/img/carta-bebestibles.jpg) no-repeat center ;
-  background-size: cover;
-  margin-right: 5px;
-}
-.home-card-4{
-  @include home-card();
-  background: url(../../assets/img/carta-postres.jpg) no-repeat center ;
-  background-size: cover;
 }
