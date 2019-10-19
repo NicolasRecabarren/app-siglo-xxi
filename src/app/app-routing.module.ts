@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'carta',
     pathMatch: 'full'
   },
   {
@@ -17,7 +17,8 @@ const routes: Routes = [
   },
   { path: 'product-list', loadChildren: './product-list/product-list.module#ProductListPageModule' },
   { path: 'carta', loadChildren: './carta/carta.module#CartaPageModule' },
-  { path: 'pagar-orden', loadChildren: './pagar-orden/pagar-orden.module#PagarOrdenPageModule' },  { path: 'menus-list', loadChildren: './menus-list/menus-list.module#MenusListPageModule' }
+  { path: 'pagar-orden', loadChildren: './pagar-orden/pagar-orden.module#PagarOrdenPageModule' },
+  { path: 'menus-list', loadChildren: './menus-list/menus-list.module#MenusListPageModule' }
 
 ];
 

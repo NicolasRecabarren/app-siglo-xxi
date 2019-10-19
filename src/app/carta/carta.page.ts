@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CartaService } from './carta.service';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-carta',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartaPage implements OnInit {
 
-  constructor() { }
+  public categorias: any;
 
-  ngOnInit() {
+  constructor(private cartaService: CartaService) {
+    this.cartaService.getCarta().subscribe((response) => {
+      const jsonTextResponse = JSON.stringify(response);
+      const jsonObject = JSON.parse(jsonTextResponse);
+
+      if (jsonObject.msj == 'OK') {
+        const categoriasAux = [];
+        jsonObject.resultados.forEach((element, index) => {
+          element.forEach((subElement, subIndex) => {
+            categoriasAux.push(subElement);
+          });
+        });
+        console.log(categoriasAux);
+        this.categorias = categoriasAux;
+      }
+    });
   }
 
+  ngOnInit() { }
 }

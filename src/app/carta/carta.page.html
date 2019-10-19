@@ -24,40 +24,10 @@
   <span class="separador-horizontal"></span>
   
   <ion-grid>
-    <ion-row>
-      <ion-col class="home-card" style="background: url(../../assets/img/carta-menus.jpg) no-repeat center;background-size: cover;">
+    <ion-row *ngFor="let categoria of categorias">
+      <ion-col class="home-card" [ngStyle]="{'background-image':'url(../../assets/img/'+categoria.IMAGEN+') no-repeat center','background-size': 'cover'}">
         <div class="opacity-card"></div>
-        <a href="/product-list">Menús</a>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="home-card" style="background: url(../../assets/img/carta-aperitivos_y_entrantes.jpg) no-repeat center;background-size: cover;">
-        <div class="opacity-card"></div>
-        <a href="/product-list">Aperitivos y entrantes</a>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="home-card" style="background: url(../../assets/img/carta-fondo.jpg) no-repeat center;background-size: cover;">
-        <div class="opacity-card"></div>
-        <a href="/product-list">Fondo</a>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="home-card" style="background: url(../../assets/img/carta-vegan.jpg) no-repeat center;background-size: cover;">
-        <div class="opacity-card"></div>
-        <a href="/product-list">Ensaladas</a>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="home-card" style="background: url(../../assets/img/carta-postres.jpg) no-repeat center;background-size: cover;">
-        <div class="opacity-card"></div>
-        <a href="/product-list">Postres</a>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="home-card" style="background: url(../../assets/img/carta-bebestibles.jpg) no-repeat center;background-size: cover;">
-        <div class="opacity-card"></div>
-        <a href="/product-list">Bebidas y licores</a>
+        <a href="/product-list/{{ categoria.ID_CATEGORIA_PLATO }}">{{ categoria.DESCRIPCION }} {{categoria.IMAGEN}}</a>
       </ion-col>
     </ion-row>
   </ion-grid>
