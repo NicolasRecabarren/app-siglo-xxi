@@ -9,4 +9,7 @@ export class HomePage {
 
   constructor() {}
 
+  ngOnInit(){
+    console.log("HOLAAAAAAAAAAAA");
+  }
 }

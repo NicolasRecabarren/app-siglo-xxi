@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CartaService } from './carta.service';
 import { catchError } from 'rxjs/operators';
+import { NavController } from '@ionic/angular';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-carta',
@@ -11,7 +13,7 @@ export class CartaPage implements OnInit {
 
   public categorias: any;
 
-  constructor(private cartaService: CartaService) {
+  constructor(private cartaService: CartaService, public navCtrl: NavController, public router: Router) {
     this.cartaService.getCarta().subscribe((response) => {
       const jsonTextResponse = JSON.stringify(response);
       const jsonObject = JSON.parse(jsonTextResponse);
@@ -27,6 +29,15 @@ export class CartaPage implements OnInit {
         this.categorias = categoriasAux;
       }
     });
+  }
+
+  ir_a_listar_productos(event, categoriaParam) {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        categoria: JSON.stringify(categoriaParam)
+      }
+    };
+    this.router.navigate(['product-list'], navigationExtras);
   }
 
   ngOnInit() { }
