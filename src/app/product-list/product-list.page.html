@@ -21,7 +21,22 @@
 
   <h1>Lorem Ipsum</h1>
   <ul class="listado-productos">
-    <li>
+
+      <ion-row *ngFor="let producto of productosFiltrados">
+        <li>
+            <div class="producto-img">
+              <img src="../../assets/img/carta-fondo.jpg" alt="">
+            </div>
+            <div class="producto-informacion">
+              <p class="producto-nombre">{{ producto.DESCRIPCION }}</p>
+              <p class="producto-descripcion">N° de plato: {{ producto.ID_PLATO }}</p>
+              <span class="producto-precio">Precio: {{ producto.PRECIO }}</span>
+              <ion-button size="small" (click)="solicitar($event, producto)">Solicitar</ion-button>
+            </div>
+          </li>
+      </ion-row>
+
+    <!--<li>
       <div class="producto-img">
         <img src="../../assets/img/carta-fondo.jpg" alt="">
       </div>
@@ -53,7 +68,7 @@
         <span class="producto-precio">Precio: $4.500</span>
         <ion-button size="small">Solicitar</ion-button>
       </div>
-    </li>
+    </li>-->
   </ul>
   <ion-fab vertical="bottom" horizontal="start" slot="fixed">
     <ion-fab-button color="danger">

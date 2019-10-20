@@ -11,7 +11,7 @@ export class ProductListService {
   getProductos() {
     return this.http.post(
         // URL
-        'http://192.168.10.25:8080/ws-restaurante-siglo-xxi/webresources/listar',
+        'http://localhost:8080/ws-restaurante-siglo-xxi/webresources/listar',
         // Params:
         'procedure=LISTAR_PLATO&package=PKG_MANTENEDORES&data=[{param:"IO_CURSOR",tipo_dato:"cursor",tipo_param:"OUT",value:""}]',
         // Headers:
