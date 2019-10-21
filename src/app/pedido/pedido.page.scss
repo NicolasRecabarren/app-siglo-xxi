@@ -1,0 +1,37 @@
+$fixedPadding: 0 5px 2px 5px;
+$fontSizeContent: 10px;
+
+h1{
+    padding: 5px;
+    margin-top: 5px;
+}
+.header-content{
+    background: url(../../assets/img/header-productos.jpg) no-repeat center center;
+    background-size: cover;
+    height: 90px;
+}
+.fixed-padding{
+    padding: $fixedPadding;
+}
+
+ion-grid.info-pedido{
+    font-size: $fontSizeContent;
+
+    ion-col{
+        padding: $fixedPadding;
+    }
+}
+
+ion-grid.detalle-pedido{
+    font-size: $fontSizeContent;
+
+    ion-row:nth-child(1){
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        font-weight: bold;
+    }
+
+    ion-row:last-child() > ion-col:nth-child(3){
+        font-weight: bold;
+    }
+}

@@ -8,27 +8,21 @@
     </div>
   </ion-toolbar>
 </ion-header>
+
 <ion-content>
+  <ion-grid class="header-content">
+  </ion-grid>
+  <h1>¡Bienvenido!</h1>
+  <p class="subtitle-page">Sea usted muy bienvenido a nuestro restaurante. Esperamos que disfrute su estancia y de nuestra comida 100% chilena.</p>
+  <span class="separador-horizontal"></span>
+  
   <ion-grid>
-    <ion-row>
-      <ion-col class="home-card-1">
+    <ion-row *ngFor="let link of links">
+      <ion-col class="home-card" [style.background-image]="'url(../../assets/img/'+link.image+')'" [style.background-size]="'cover'">
         <div class="opacity-card"></div>
-        <a href="/carta">Ver carta</a>
-      </ion-col>
-      <ion-col class="home-card-2">
-        <div class="opacity-card"></div>
-        <a href="javascript:;">Ver estado de orden</a>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="home-card-3">
-        <div class="opacity-card"></div>
-        <a href="javascript:;">Llamar garzón</a>
-      </ion-col>
-      <ion-col class="home-card-4">
-        <div class="opacity-card"></div>
-        <a href="/pagar-orden">Pagar orden</a>
+        <a href="javascript:;" (click)="this[link.onClickEvent]()">{{ link.name }}</a>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <!--<img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEkAAAA9CAIAAABuotNcAAABCElEQVRoge3a4Q2EMAgFYDZiIgZiG4ZhH/zRu9i7RK2J5/kob4J+QYUSKfKG/n2AH6ZsmCkbZqa2uTIRq99xmIuzbzMhIsppi2iFK9vTUrayPS1ly2ozydnf3r0bs39PPU8Cp2yYKRtmyoaZeW3rXCJ204EuzI7NlV8iV0bkbdtMuwHSlfFwo++bSVqbK8PRBm2ujHfFGbOZAMoGdwpwT2PLkQ20ZBFxYDPpPyCugsXctLV+/RG0Cs47T2KnbJgpG2bKhpl5bWn3Jes0CblR2LO5d9OjCdw0eeLejVe2ERvmQiEObd1NB69wQ89kE8IV78QOL6vta72AkTn3k9j/lkTMPE9iJ7NtAS81Q/3lMFAOAAAAAElFTkSuQmCCAA==">-->
 </ion-content>

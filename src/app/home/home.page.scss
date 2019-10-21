@@ -1,3 +1,13 @@
+h1{
+  padding: 5px;
+  margin-top: 5px;
+}
+.header-content{
+  background: url(../../assets/img/header-productos.jpg) no-repeat center center;
+  background-size: cover;
+  height: 90px;
+}
+
 @mixin todo-ancho-largo {
   top: 0;
   left: 0;
@@ -6,10 +16,18 @@
   position: absolute;
 }
 
-@mixin home-card() {
+@mixin todo-ancho-largo {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.home-card {
   display: block;
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 85px;
   list-style: none;
   position: relative;
   border-radius: 5px;
@@ -20,41 +38,18 @@
     text-decoration: none;
     color: #fff;
     margin: 0;
-    padding: 95px 10px 10px 10px;
+    padding: 30px 10px 10px 10px;
     text-align: center;
     font-size: 20px;
   }
   .opacity-card{
     @include todo-ancho-largo();
     background-color: #000;
-    opacity: 0.4;
+    opacity: 0.5;
     border-radius: 5px;
   }
 }
 
 ion-grid{
   margin-top: 15px;
-}
-
-.home-card-1{
-  @include home-card();
-  background: url(../../assets/img/home-plato_cubiertos.jpg) no-repeat center ;
-  background-size: cover;
-  margin-right: 5px;
-}
-.home-card-2{
-  @include home-card();
-  background: url(../../assets/img/home-cocina_chef.jpg) no-repeat center ;
-  background-size: cover;
-}
-.home-card-3{
-  @include home-card();
-  background: url(../../assets/img/home-garzon.jpg) no-repeat center ;
-  background-size: cover;
-  margin-right: 5px;
-}
-.home-card-4{
-  @include home-card();
-  background: url(../../assets/img/home-dinero_cash.jpg) no-repeat center ;
-  background-size: cover;
 }

@@ -14,7 +14,9 @@
     <ion-row>
       <ion-col></ion-col>
       <ion-col>
-        <ion-button size="small" href="/home" color="light" style="float: right;">Volver</ion-button>
+        <ion-button size="small" href="javascript:;" color="light" style="float: right;" (click)="irAHome()">
+          Volver
+        </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -24,11 +26,11 @@
   <span class="separador-horizontal"></span>
   
   <ion-grid>
-    <ion-row *ngFor="let categoria of categorias" (click)="ir_a_listar_productos($event, categoria)">
-      <ion-col class="home-card" [ngStyle]="{'background-image':'url(../../assets/img/'+categoria.IMAGEN+') no-repeat center','background-size': 'cover'}">
+    <ion-row *ngFor="let categoria of categorias">
+      <ion-col class="home-card" [style.background-image]="'url(../../assets/img/'+categoria.IMAGEN+')'" [style.background-size]="'cover'">
         <div class="opacity-card"></div>
         <!--<a href="/product-list/{{ categoria.ID_CATEGORIA_PLATO }}">{{ categoria.DESCRIPCION }}</a>-->
-        <a>{{ categoria.DESCRIPCION }}</a>
+        <a href="javascript:;" (click)="ir_a_listar_productos($event, categoria)">{{ categoria.DESCRIPCION }}</a>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -36,6 +38,12 @@
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="light" size="small">
       <ion-icon name="arrow-dropdown"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button color="danger" size="small" (click)="irADetallePedido()">
+      <ion-icon name="cart"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
