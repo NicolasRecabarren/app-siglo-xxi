@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +26,7 @@ export class HomePage {
     image: 'home-garzon.jpg'
   }];
 
-  constructor(public router: Router) {
+  constructor(public router: Router, public alertCtrl: AlertController) {
     localStorage.clear();
     let pedido = JSON.parse(localStorage.getItem('pedido'));
     if (pedido == null) {
@@ -48,15 +49,41 @@ export class HomePage {
     this.router.navigate(['carta']);
   }
 
-  irAPedido() {
-    this.router.navigate(['pedido']);
+  async irAPedido() {
+    let pedido = JSON.parse(localStorage.getItem('pedido'));
+    if (pedido.productos == null || pedido.productos.length == 0) {
+      const alert = await this.alertCtrl.create({
+        header: 'Orden no disponible',
+        message: 'Usted aún no ha solicitado ningún producto.',
+        buttons: ['Ok']
+      });
+      await alert.present();
+    } else {
+      this.router.navigate(['pedido']);
+    }
   }
 
-  irAPagarOrden() {
-    this.router.navigate(['pagar-orden']);
+  async irAPagarOrden() {
+    let pedido = JSON.parse(localStorage.getItem('pedido'));
+    if (pedido.productos == null || pedido.productos.length == 0) {
+      const alert = await this.alertCtrl.create({
+        header: 'Orden no disponible',
+        message: 'Usted aún no ha solicitado ningún producto.',
+        buttons: ['Ok']
+      });
+      await alert.present();
+    } else {
+      this.router.navigate(['pagar-orden']);
+    }
   }
 
-  llamarGarzon() {
-    console.log("holi");
+  async llamarGarzon() {
+    const alert = await this.alertCtrl.create({
+      header: '¡Garzón llamado!',
+      message: 'Un garzón estará en su mesa en breve.',
+      buttons: ['Ok']
+    });
+
+    await alert.present();
   }
 }

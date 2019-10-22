@@ -45,28 +45,53 @@ export class ProductListPage implements OnInit {
     });
   }
 
-  solicitar(event, producto) {
-    let pedido = JSON.parse(localStorage.getItem('pedido'));
-    if (pedido.productos == null) {
-      pedido.productos = [];
-    }
-    pedido.productos.push(producto);
+  async solicitar(event, producto) {
+    const alert = await this.alertCtrl.create({
+      header: 'Agregar Producto',
+      message: '<ul><li>' + (producto.DESCRIPCION).toLowerCase() + '</li></ul><br>A continuación, ingrese la cantidad que desea:',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => { }
+        }, {
+          text: 'Confirmar',
+          handler: (alertData) => {
 
-    const subtotal = parseInt(pedido.info.subtotal) + parseInt(producto.PRECIO);
+            let pedido = JSON.parse(localStorage.getItem('pedido'));
+            if (pedido.productos == null) {
+              pedido.productos = [];
+            }
+            producto.CANTIDAD = parseInt(alertData.producto_cantidad);
+            pedido.productos.push(producto);
 
-    pedido.info.subtotal = subtotal;
-    pedido.info.total = subtotal * 1.1;
+            const subtotal = parseInt(pedido.info.subtotal) + parseInt(producto.PRECIO);
 
-    localStorage.setItem('pedido', JSON.stringify(pedido));
-    this.alertExitoso();
+            pedido.info.subtotal = subtotal;
+            pedido.info.total = subtotal * 1.1;
+
+            localStorage.setItem('pedido', JSON.stringify(pedido));
+            this.alertExitoso();
+          }
+        }
+      ],
+      inputs: [{
+        name: 'producto_cantidad',
+        type: 'text',
+        value: 1
+      }],
+    });
+
+    await alert.present();
   }
 
   async alertExitoso(){
     const alert = await this.alertCtrl.create({
       header: 'Plato agregado',
-      subHeader: 'El plato ha sido agregado a su pedido exitosamente',
-      message: 'Para visualizar su pedido actual, diríjase a opción "Mi Pedido".',
-      buttons: ['OK']
+      subHeader: '¡Producto agregado!',
+      message: 'Recuerde que para visualizar su pedido actual, debe presionar el ícono del carrito situado en la parte inferior izquierda de la pantalla.',
+      buttons: ['Continuar']
     });
 
     await alert.present();

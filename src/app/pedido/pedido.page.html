@@ -50,7 +50,7 @@
     </ion-row>
     <ion-row *ngFor="let producto of pedido.productos">
       <ion-col size="8">{{producto.DESCRIPCION}}</ion-col>
-      <ion-col size="2">1</ion-col>
+      <ion-col size="2">{{producto.CANTIDAD}}</ion-col>
       <ion-col size="2" class="text-right">${{producto.PRECIO}}</ion-col>
     </ion-row>
 
@@ -63,5 +63,5 @@
     </ion-row>
   </ion-grid>
 
-  <ion-button size="small" expand="full" color="danger" style="margin-top: 25px;">Enviar orden</ion-button>
+  <ion-button size="small" expand="full" color="danger" style="margin-top: 25px;">Enviar orden a cocina</ion-button>
 </ion-content>
