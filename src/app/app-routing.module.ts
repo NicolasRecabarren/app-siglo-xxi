@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'pagar-orden', loadChildren: './pagar-orden/pagar-orden.module#PagarOrdenPageModule' },
   { path: 'menus-list', loadChildren: './menus-list/menus-list.module#MenusListPageModule' }
 
+
 ];
 
 @NgModule({
