@@ -21,8 +21,10 @@
     </ion-row>
   </ion-grid>
 
-  <h1>Resumen de su orden</h1>
+  <h1>Pedido</h1>
+  <p class="subtitle-page">Aquí puede encontrar cada uno de los productos agregados en su pedido.</p>
   <span class="separador-horizontal"></span>
+
   <ion-grid class="info-pedido">
     <ion-row>
       <ion-col size="3">Orden N°</ion-col>
@@ -46,41 +48,20 @@
       <ion-col size="2">Cant.</ion-col>
       <ion-col size="2">Total</ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col size="8">Cazuela de vacuno</ion-col>
-      <ion-col size="2">1</ion-col>
-      <ion-col size="2" class="text-right">$4.500</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="8">Coca Cola (individual)</ion-col>
-      <ion-col size="2">2</ion-col>
-      <ion-col size="2" class="text-right">$3.200</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="8">Pie de limón</ion-col>
-      <ion-col size="2">1</ion-col>
-      <ion-col size="2" class="text-right">$2.000</ion-col>
+    <ion-row *ngFor="let producto of pedido.productos">
+      <ion-col size="8">{{producto.DESCRIPCION}}</ion-col>
+      <ion-col size="2">{{producto.CANTIDAD}}</ion-col>
+      <ion-col size="2" class="text-right">${{producto.PRECIO}}</ion-col>
     </ion-row>
 
     <span class="separador-horizontal"></span>
 
     <ion-row>
-      <ion-col size="8" class="fixed-padding">Total</ion-col>
+      <ion-col size="8" class="fixed-padding">Subtotal</ion-col>
       <ion-col size="2" class="fixed-padding"></ion-col>
-      <ion-col size="2" class="fixed-padding text-right">$9.700</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="8" class="fixed-padding">Propina sugerida (10%)</ion-col>
-      <ion-col size="2" class="fixed-padding"></ion-col>
-      <ion-col size="2" class="fixed-padding text-right">$970</ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="8" style="padding-top: 10px;font-weight: bold;font-size: 11px;">Total c/ propina</ion-col>
-      <ion-col size="1" style="padding-top: 10px;"></ion-col>
-      <ion-col size="3" style="padding-top: 10px;font-weight: bold;font-size: 11px;" class="text-right">$10.870</ion-col>
+      <ion-col size="2" class="fixed-padding text-right">${{pedido.info.subtotal}}</ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-button size="small" expand="full" color="danger" style="margin-top: 25px;">Pagar total</ion-button>
-  <ion-button size="small" expand="full" color="danger">Pagar total c/ propina</ion-button>
+  <ion-button size="small" expand="full" color="danger" style="margin-top: 25px;">Enviar orden a cocina</ion-button>
 </ion-content>

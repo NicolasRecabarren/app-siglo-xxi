@@ -15,13 +15,13 @@ export class ProductListPage implements OnInit {
   public productosFiltrados: any;
   public productosSolicitados: any;
 
+  // tslint:disable-next-line: max-line-length
   constructor(private productService: ProductListService, private route: ActivatedRoute, private router: Router, public alertCtrl: AlertController) {
-    this.productosSolicitados = JSON.parse(localStorage.getItem("pedido"));
-    if(!this.productosSolicitados) {
-      this.productosSolicitados = []; 
+    this.productosSolicitados = JSON.parse(localStorage.getItem('pedido'));
+    if (!this.productosSolicitados) {
+      this.productosSolicitados = [];
     }
     this.route.queryParams.subscribe(params => {
-      console.log(params);
       this.categoria = JSON.parse(params.categoria);
     });
 
@@ -36,43 +36,75 @@ export class ProductListPage implements OnInit {
             productosAux.push(subElement);
           });
         });
-        //console.log(productosAux);
+
         this.productos = productosAux;
         this.productosFiltrados = this.productos.filter( producto => {
           return producto.ID_CATEGORIA_PLATO == this.categoria.ID_CATEGORIA_PLATO;
         });
-        console.log(this.productosFiltrados);
       }
     });
   }
 
-  solicitar(event, producto) {
-    this.productosSolicitados.push(producto);
-    var productosAGuardar = JSON.stringify(this.productosSolicitados);
-    localStorage.setItem("pedido", productosAGuardar);
-
-    //Como recuperar la variable "pedido" desde local storage:
-    //var pedidoProductosAux = localStorage.getItem("pedido");
-    //var pedidoProductos = JSON.parse(pedidoProductosAux);
-    //console.log(pedidoProductos);
-    this.alertExitoso();
-
-    //Si se quiere limpiar lo que hay en local storage, agregar lo siguiente (Se podría usar en un botón llamado "Reiniciar pedido", o "Limpiar pedido", o algo así)
-    //localStorage.clear();
-  }
-
-  async alertExitoso(){
+  async solicitar(event, producto) {
     const alert = await this.alertCtrl.create({
-      header: 'Plato agregado',
-      subHeader: 'El plato ha sido agregado a su pedido exitosamente',
-      message: 'Para visualizar su pedido actual, diríjase a opción "Mi Pedido".',
-      buttons: ['OK']
+      header: 'Agregar Producto',
+      message: '<ul><li>' + (producto.DESCRIPCION).toLowerCase() + '</li></ul><br>A continuación, ingrese la cantidad que desea:',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => { }
+        }, {
+          text: 'Confirmar',
+          handler: (alertData) => {
+
+            let pedido = JSON.parse(localStorage.getItem('pedido'));
+            if (pedido.productos == null) {
+              pedido.productos = [];
+            }
+            producto.CANTIDAD = parseInt(alertData.producto_cantidad);
+            pedido.productos.push(producto);
+
+            const subtotal = parseInt(pedido.info.subtotal) + parseInt(producto.PRECIO);
+
+            pedido.info.subtotal = subtotal;
+            pedido.info.total = subtotal * 1.1;
+
+            localStorage.setItem('pedido', JSON.stringify(pedido));
+            this.alertExitoso();
+          }
+        }
+      ],
+      inputs: [{
+        name: 'producto_cantidad',
+        type: 'text',
+        value: 1
+      }],
     });
 
     await alert.present();
   }
 
-  //Esto es una prueba
+  async alertExitoso(){
+    const alert = await this.alertCtrl.create({
+      header: 'Plato agregado',
+      subHeader: '¡Producto agregado!',
+      message: 'Recuerde que para visualizar su pedido actual, debe presionar el ícono del carrito situado en la parte inferior izquierda de la pantalla.',
+      buttons: ['Continuar']
+    });
+
+    await alert.present();
+  }
+
+  irADetallePedido() {
+    this.router.navigate(['pedido']);
+  }
+
+  irACarta() {
+    this.router.navigate(['carta']);
+  }
+
   ngOnInit() {
   }
 

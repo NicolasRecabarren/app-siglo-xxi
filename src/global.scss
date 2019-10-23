@@ -25,6 +25,26 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+ion-alert{
+    .alert-head{
+        h2.alert-title{
+            border-bottom: 1px solid #d9d9d9;
+            padding-bottom: 10px;
+            text-align: center;
+            text-transform: capitalize;
+        }
+    }
+    div.alert-message.sc-ion-alert-md{
+        font-size: 14px;
+    }
+    div.alert-input-group.sc-ion-alert-md{
+        padding-top: 0;
+        padding-bottom: 0 !important;
+        input{
+            text-align: right;
+        }
+    }
+}
 .separador-horizontal{
     display: block;
     width: 100%;

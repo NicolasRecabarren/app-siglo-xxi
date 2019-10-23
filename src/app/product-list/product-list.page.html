@@ -14,14 +14,15 @@
     <ion-row>
       <ion-col></ion-col>
       <ion-col>
-        <ion-button size="small" href="/carta" color="light" style="float: right;">Volver</ion-button>
+        <ion-button size="small" href="javascript:;" color="light" style="float: right;" (click)="irACarta()">
+          Volver
+        </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <h1>Lorem Ipsum</h1>
+  <h1>{{categoria.DESCRIPCION}}</h1>
   <ul class="listado-productos">
-
       <ion-row *ngFor="let producto of productosFiltrados">
         <li>
             <div class="producto-img">
@@ -29,49 +30,15 @@
             </div>
             <div class="producto-informacion">
               <p class="producto-nombre">{{ producto.DESCRIPCION }}</p>
-              <p class="producto-descripcion">N° de plato: {{ producto.ID_PLATO }}</p>
-              <span class="producto-precio">Precio: {{ producto.PRECIO }}</span>
+              <p class="producto-descripcion">Código de plato: {{ producto.ID_PLATO }}</p>
+              <span class="producto-precio">Precio: ${{ producto.PRECIO }}</span>
               <ion-button size="small" (click)="solicitar($event, producto)">Solicitar</ion-button>
             </div>
           </li>
       </ion-row>
-
-    <!--<li>
-      <div class="producto-img">
-        <img src="../../assets/img/carta-fondo.jpg" alt="">
-      </div>
-      <div class="producto-informacion">
-        <p class="producto-nombre">Cazuela de vacuno</p>
-        <p class="producto-descripcion">Sopa de verduras con generoso corte de carne mechada</p>
-        <span class="producto-precio">Precio: $4.500</span>
-        <ion-button size="small">Solicitar</ion-button>
-      </div>
-    </li>
-    <li>
-      <div class="producto-img">
-        <img src="../../assets/img/carta-fondo.jpg" alt="">
-      </div>
-      <div class="producto-informacion">
-        <p class="producto-nombre">Cazuela de vacuno</p>
-        <p class="producto-descripcion">Sopa de verduras con generoso corte de carne mechada</p>
-        <span class="producto-precio">Precio: $4.500</span>
-        <ion-button size="small">Solicitar</ion-button>
-      </div>
-    </li>
-    <li>
-      <div class="producto-img">
-        <img src="../../assets/img/carta-fondo.jpg" alt="">
-      </div>
-      <div class="producto-informacion">
-        <p class="producto-nombre">Cazuela de vacuno</p>
-        <p class="producto-descripcion">Sopa de verduras con generoso corte de carne mechada</p>
-        <span class="producto-precio">Precio: $4.500</span>
-        <ion-button size="small">Solicitar</ion-button>
-      </div>
-    </li>-->
   </ul>
   <ion-fab vertical="bottom" horizontal="start" slot="fixed">
-    <ion-fab-button color="danger">
+    <ion-fab-button color="danger" size="small" (click)="irADetallePedido()">
       <ion-icon name="cart"></ion-icon>
     </ion-fab-button>
   </ion-fab>

@@ -14,6 +14,19 @@ export class CartaPage implements OnInit {
   public categorias: any;
 
   constructor(private cartaService: CartaService, public navCtrl: NavController, public router: Router) {
+    let pedido = JSON.parse(localStorage.getItem('pedido'));
+    if (pedido == null) {
+      pedido = {
+        info: {
+          subtotal: 0,
+          total: 0
+        },
+        productos: []
+      };
+
+      localStorage.setItem('pedido', JSON.stringify(pedido));
+    }
+
     this.cartaService.getCarta().subscribe((response) => {
       const jsonTextResponse = JSON.stringify(response);
       const jsonObject = JSON.parse(jsonTextResponse);
@@ -25,7 +38,7 @@ export class CartaPage implements OnInit {
             categoriasAux.push(subElement);
           });
         });
-        console.log(categoriasAux);
+
         this.categorias = categoriasAux;
       }
     });
@@ -38,6 +51,22 @@ export class CartaPage implements OnInit {
       }
     };
     this.router.navigate(['product-list'], navigationExtras);
+  }
+
+  irADetallePedido() {
+    this.router.navigate(['pedido']);
+  }
+
+  irAHome() {
+    this.router.navigate(['home']);
+  }
+
+  irAListaMenus() {
+    this.router.navigate(['lista-menus']);
+  }
+
+  irAListaBebestibles() {
+    this.router.navigate(['lista-bebestibles']);
   }
 
   ngOnInit() { }
