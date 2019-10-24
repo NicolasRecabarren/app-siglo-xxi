@@ -63,7 +63,7 @@ export class CartaPage implements OnInit {
   }
 
   irAListaMenus() {
-    this.router.navigate(['lista-menus']);
+    this.router.navigate(['menus-list']);
   }
 
   irAListaBebestibles() {

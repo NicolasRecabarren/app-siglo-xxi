@@ -1,0 +1,54 @@
+h1{
+    padding: 5px;
+    margin-top: 5px;
+}
+.header-content{
+    background: url(../../assets/img/header-productos.jpg) no-repeat center center;
+    background-size: cover;
+    height: 90px;
+}
+
+.menu-item{
+    padding-top: 5px;
+    margin-bottom: 10px;
+    .menu-title{
+        text-align: center;
+        text-transform: uppercase;
+        padding: 5px 0;
+        margin: 0;
+        border-top: 1px solid #d9d9d9;
+        border-bottom: 1px solid #d9d9d9;
+    }
+    ion-row{
+        padding-top: 5px;
+        .col-1{
+            img{
+                height: 115px;
+                border-radius: 5px;
+            }
+        }
+        .col-2{
+            .menu-price{
+                font-size: 11px;
+                display: block;
+                position: absolute;
+                bottom: 15px;
+            }
+            ul{
+                margin: 0;
+                padding-left: 10px;
+                li{
+                    font-size: 11px;
+                    color: #717171;
+                    text-transform: initial;
+                }
+            }
+            ion-button{
+                font-size: 11px;
+                position: absolute;
+                bottom: 5px;
+                right: 5px;
+            }
+        }
+    }
+}

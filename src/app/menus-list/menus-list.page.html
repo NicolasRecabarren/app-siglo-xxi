@@ -1,9 +1,44 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>menus-list</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <div class="brand" style="text-align: left;">
+      <img src="../../assets/img/logo_negro.png" alt="" style="float: right;height: 40px;">
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid class="header-content">
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col>
+        <ion-button size="small" href="javascript:;" color="light" style="float: right;" (click)="irACarta()">
+          Volver
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
+  <h1>Menús</h1>
+  <ion-grid>
+    <div *ngFor="let menu of menus" class="menu-item">
+      <p class="menu-title">{{menu.DESCRIPCION}}</p>
+      <ion-row>
+        <ion-col class="col-1" size="4">
+          <img src="../../assets/img/carta-menus.jpg" alt="">
+        </ion-col>
+        <ion-col class="col-2" size="8">
+          <ul>
+            <li *ngFor="let producto of menu.detalle">
+              {{producto.DETALLE}}
+            </li>
+          </ul>
+          <span class="menu-price">Precio: ${{menu.PRECIO}}</span>
+          <ion-button size="small" (click)="solicitar($event, menu)">Solicitar</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
 </ion-content>
