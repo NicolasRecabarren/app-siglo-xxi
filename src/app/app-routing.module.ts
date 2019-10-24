@@ -15,10 +15,26 @@ const routes: Routes = [
     path: 'list',
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
-  { path: 'product-list', loadChildren: './product-list/product-list.module#ProductListPageModule' },
+  {
+    path: 'product-list',
+    children: [
+      {
+        path: '',
+        loadChildren: './product-list/product-list.module#ProductListPageModule',
+      },
+      {
+        path: ':categoriaId',
+        loadChildren: './product-list/product-list.module#ProductListPageModule'
+      }
+    ]
+  },
   { path: 'carta', loadChildren: './carta/carta.module#CartaPageModule' },
   { path: 'pagar-orden', loadChildren: './pagar-orden/pagar-orden.module#PagarOrdenPageModule' },
-  { path: 'menus-list', loadChildren: './menus-list/menus-list.module#MenusListPageModule' }
+  { path: 'menus-list', loadChildren: './menus-list/menus-list.module#MenusListPageModule' },
+  { path: 'pedido', loadChildren: './pedido/pedido.module#PedidoPageModule' },  { path: 'pagar-orden-webpay', loadChildren: './pagar-orden-webpay/pagar-orden-webpay.module#PagarOrdenWebpayPageModule' },
+  { path: 'pagar-orden-qr', loadChildren: './pagar-orden-qr/pagar-orden-qr.module#PagarOrdenQrPageModule' }
+
+
 
 ];
 

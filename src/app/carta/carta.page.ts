@@ -19,6 +19,7 @@ export class CartaPage implements OnInit {
       pedido = {
         info: {
           subtotal: 0,
+          propina: 0,
           total: 0
         },
         productos: []

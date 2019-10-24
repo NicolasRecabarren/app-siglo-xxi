@@ -12,7 +12,7 @@ export class PedidoPage implements OnInit {
 
   constructor(public router: Router) {
     this.pedido = JSON.parse(localStorage.getItem('pedido'));
-    console.log(this.pedido);
+
     //Si se quiere limpiar lo que hay en local storage, agregar lo siguiente (Se podría usar en un botón llamado "Reiniciar pedido", o "Limpiar pedido", o algo así)
     //localStorage.clear();
   }

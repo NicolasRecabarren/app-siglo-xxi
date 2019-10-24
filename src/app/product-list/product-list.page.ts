@@ -69,7 +69,9 @@ export class ProductListPage implements OnInit {
             const subtotal = parseInt(pedido.info.subtotal) + parseInt(producto.PRECIO);
 
             pedido.info.subtotal = subtotal;
-            pedido.info.total = subtotal * 1.1;
+            pedido.info.propina  = (subtotal * 0.1).toFixed(0);
+            pedido.info.total    = (subtotal * 1.1).toFixed(0);
+
 
             localStorage.setItem('pedido', JSON.stringify(pedido));
             this.alertExitoso();

@@ -27,12 +27,13 @@ export class HomePage {
   }];
 
   constructor(public router: Router, public alertCtrl: AlertController) {
-    localStorage.clear();
+    //localStorage.clear();
     let pedido = JSON.parse(localStorage.getItem('pedido'));
     if (pedido == null) {
       pedido = {
         info: {
           subtotal: 0,
+          propina: 0,
           total: 0
         },
         productos: []
