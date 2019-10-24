@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuService } from './menu.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menus-list',
@@ -11,7 +12,7 @@ export class MenusListPage implements OnInit {
 
   public menus: any;
 
-  constructor(public router: Router, private menuService: MenuService) {
+  constructor(public router: Router, private menuService: MenuService, public alertCtrl: AlertController) {
 
     // Vamos a buscar los menús y su detalle de productos correspondiente.
     this.menuService.getMenus().subscribe((responseMenus) => {
@@ -54,7 +55,61 @@ export class MenusListPage implements OnInit {
     this.router.navigate(['carta']);
   }
 
-  solicitar(event, menu) {
-
+  irADetallePedido() {
+    this.router.navigate(['pedido']);
   }
+
+  async solicitar(event, menu) {
+    const alert = await this.alertCtrl.create({
+      header: 'Agregar Menú',
+      message: '<ul><li>' + (menu.DESCRIPCION).toLowerCase() + '</li></ul><br>A continuación, ingrese la cantidad que desea:',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => { }
+        }, {
+          text: 'Confirmar',
+          handler: (alertData) => {
+
+            let pedido = JSON.parse(localStorage.getItem('pedido'));
+            if (pedido.productos == null) {
+              pedido.productos = [];
+            }
+            menu.CANTIDAD = parseInt(alertData.menu_cantidad);
+            pedido.productos.push(menu);
+
+            const subtotal = parseInt(pedido.info.subtotal) + parseInt(menu.PRECIO);
+
+            pedido.info.subtotal = subtotal;
+            pedido.info.propina  = (subtotal * 0.1).toFixed(0);
+            pedido.info.total    = (subtotal * 1.1).toFixed(0);
+
+            localStorage.setItem('pedido', JSON.stringify(pedido));
+            this.alertExitoso();
+          }
+        }
+      ],
+      inputs: [{
+        name: 'menu_cantidad',
+        type: 'text',
+        value: 1
+      }],
+    });
+
+    await alert.present();
+  }
+
+  async alertExitoso(){
+    const alert = await this.alertCtrl.create({
+      header: 'Menú agregado',
+      subHeader: '¡Producto agregado!',
+      message: 'Recuerde que para visualizar su pedido actual, debe presionar el ícono del carrito situado en la parte inferior izquierda de la pantalla.',
+      buttons: ['Continuar']
+    });
+
+    await alert.present();
+  }
+
 }
