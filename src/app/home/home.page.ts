@@ -65,7 +65,7 @@ export class HomePage {
   }
 
   async irAPagarOrden() {
-    let pedido = JSON.parse(localStorage.getItem('pedido'));
+    const pedido = JSON.parse(localStorage.getItem('pedido'));
     if (pedido.productos == null || pedido.productos.length == 0) {
       const alert = await this.alertCtrl.create({
         header: 'Orden no disponible',
@@ -73,6 +73,15 @@ export class HomePage {
         buttons: ['Ok']
       });
       await alert.present();
+
+    } else if (pedido.info.ID_ESTADO_PEDIDO == 1 /*|| pedido.info.ID_ESTADO_PEDIDO == 2*/) {
+      const alert = await this.alertCtrl.create({
+        header: 'Pagar Orden No Disponible',
+        message: 'No se puede pagar la orden debido a que aún no se envía a los cocineros o no se encuentran los productos en su mesa.',
+        buttons: ['Ok']
+      });
+      await alert.present();
+
     } else {
       this.router.navigate(['pagar-orden']);
     }

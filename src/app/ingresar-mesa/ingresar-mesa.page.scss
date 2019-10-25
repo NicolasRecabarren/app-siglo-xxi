@@ -1,0 +1,26 @@
+h1{
+  margin-top: 5px;
+}
+.header-content{
+  background: url(../../assets/img/header-productos.jpg) no-repeat center center;
+  background-size: cover;
+  height: 90px;
+}
+
+#form-container{
+  padding: 5px;
+  label{
+    display: block;
+    margin-top: 40px;
+    font-size: 14px;
+    color: #717171;
+  }
+  ion-input{
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    text-align: center;
+  }
+  ion-button{
+    font-size: 12px;
+  }
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pagar-orden',
@@ -22,13 +23,12 @@ export class PagarOrdenPage implements OnInit {
 
   pagarOrden(event, pagarOpcion) {
     const pedido = JSON.parse(localStorage.getItem('pedido'));
-    let monto = pedido.info.total;
+    let monto = pedido.info.TOTAL;
     if (pagarOpcion == 'subtotal') {
-      monto = pedido.info.subtotal;
+      monto = pedido.info.TOTAL;
     }
 
-    pedido.info.forma_pago = 2;
-    if (pedido.info.forma_pago == 1) {
+    if (pedido.info.METODO_PAGO == 'WEBPAY') {
       this.router.navigate(['pagar-orden-webpay']);
     } else {
       this.router.navigate(['pagar-orden-qr']);

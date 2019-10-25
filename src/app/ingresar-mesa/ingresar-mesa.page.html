@@ -1,10 +1,24 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>ingresar-mesa</ion-title>
+    <ion-buttons slot="start">
+    </ion-buttons>
+    <div class="brand" style="text-align: center;">
+      <img src="../../assets/img/logo_negro.png" alt="" style="height: 40px;">
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-input type="text" placeholder="N° de mesa" [(ngModel)]="num_mesa"></ion-input>
-  <ion-button color="primary" (click)="recuperar_pedido()">Ingresar mesa</ion-button>
+  <ion-grid class="header-content">
+  </ion-grid>
+
+  <div id="form-container">
+    <h1>¡Bienvenido!</h1>
+    <p class="subtitle-page">Sea usted muy bienvenido a nuestro restaurante. Esperamos que disfrute su estancia y de nuestra comida 100% chilena.</p>
+    <span class="separador-horizontal"></span>
+
+    <label>Favor, ingrese el número de mesa:</label>
+    <ion-input type="number" [(ngModel)]="num_mesa"></ion-input>
+    <ion-button color="primary" expand="full" (click)="recuperar_pedido()">Ingresar mesa</ion-button>
+  </div>
 </ion-content>

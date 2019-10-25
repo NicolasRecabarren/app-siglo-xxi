@@ -4,16 +4,12 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'carta',
+    redirectTo: 'ingresar-mesa',
     pathMatch: 'full'
   },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
-  },
-  {
-    path: 'list',
-    loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
   { path: 'ingresar-mesa', loadChildren: './ingresar-mesa/ingresar-mesa.module#IngresarMesaPageModule' },
   { path: 'product-list', loadChildren: './product-list/product-list.module#ProductListPageModule' },

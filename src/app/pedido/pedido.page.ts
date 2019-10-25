@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PedidoService } from './pedido.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pedido',
@@ -10,11 +12,8 @@ export class PedidoPage implements OnInit {
 
   public pedido: any;
 
-  constructor(public router: Router) {
+  constructor(public router: Router, private pedidoService: PedidoService, private alertCtrl: AlertController) {
     this.pedido = JSON.parse(localStorage.getItem('pedido'));
-
-    //Si se quiere limpiar lo que hay en local storage, agregar lo siguiente (Se podría usar en un botón llamado "Reiniciar pedido", o "Limpiar pedido", o algo así)
-    //localStorage.clear();
   }
 
   ngOnInit() {
@@ -22,5 +21,40 @@ export class PedidoPage implements OnInit {
 
   irAHome() {
     this.router.navigate(['home']);
+  }
+
+  enviarACocina() {
+    this.pedidoService.actualizarEstadoPedido(this.pedido.info.ID_PEDIDO, 2).subscribe((response) => {
+      const jsonObject = JSON.parse(JSON.stringify(response));
+
+      if (jsonObject.msj == 'OK') {
+        this.pedido.info.ID_ESTADO_PEDIDO = 2;
+        localStorage.setItem('pedido', JSON.stringify(this.pedido));
+        this.mensajePedidoActualizado();
+        this.router.navigate(['home']);
+      } else {
+        this.mensajeError();
+      }
+    });
+  }
+
+  async mensajePedidoActualizado() {
+    const alert = await this.alertCtrl.create({
+      header: '¡Orden enviada!',
+      message: 'Nuestros cocineros han recibido su pedido. Ahora solo queda esperar.',
+      buttons: ['Ok']
+    });
+
+    await alert.present();
+  }
+
+  async mensajeError() {
+    const alert = await this.alertCtrl.create({
+      header: '¡Ups! Ha ocurrido un problema.',
+      message: 'Nuestros cocineros no pudieron recibir su pedido. Favor contacte a un garzón.',
+      buttons: ['Ok']
+    });
+
+    await alert.present();
   }
 }

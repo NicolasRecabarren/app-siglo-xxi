@@ -66,11 +66,11 @@ export class ProductListPage implements OnInit {
             producto.CANTIDAD = parseInt(alertData.producto_cantidad);
             pedido.productos.push(producto);
 
-            const subtotal = parseInt(pedido.info.subtotal) + parseInt(producto.PRECIO);
+            const subtotal = parseInt(pedido.info.SUBTOTAL) + parseInt(producto.PRECIO);
 
-            pedido.info.subtotal = subtotal;
-            pedido.info.propina  = (subtotal * 0.1).toFixed(0);
-            pedido.info.total    = (subtotal * 1.1).toFixed(0);
+            pedido.info.SUBTOTAL = subtotal;
+            pedido.info.PROPINA  = (subtotal * 0.1).toFixed(0);
+            pedido.info.TOTAL    = (subtotal * 1.1).toFixed(0);
 
 
             localStorage.setItem('pedido', JSON.stringify(pedido));

@@ -18,7 +18,6 @@ export class PagarOrdenQrPage implements OnInit {
   }
 
   irAIngreso() {
-    localStorage.clear();
-    this.router.navigate(['home']);
+    this.router.navigate(['ingresar-mesa']);
   }
 }

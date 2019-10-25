@@ -10,52 +10,58 @@ import { AlertController } from '@ionic/angular';
 })
 export class IngresarMesaPage implements OnInit {
 
-  num_mesa : any;
-  
-  constructor(private mesaService: IngresarMesaService, public router: Router, public alertCtrl: AlertController) { }
+  public num_mesa: any;
 
-  recuperar_pedido(){
+  constructor(private mesaService: IngresarMesaService, public router: Router, public alertCtrl: AlertController) {
+    localStorage.clear();
+  }
+
+  recuperar_pedido() {
+    // Validamos que ingrese un número de mesa.
+    if (this.num_mesa == '' || this.num_mesa == null) {
+      this.mensajePedidoError('Por favor ingrese un número de mesa.');
+      return false;
+    }
 
     this.mesaService.getPedido(this.num_mesa).subscribe((response) => {
       const jsonTextResponse = JSON.stringify(response);
       const jsonObject = JSON.parse(jsonTextResponse);
 
       if (jsonObject.msj == 'OK') {
-        const pedido = [];
+        let pedido = {
+          encontrado: false,
+          info: {},
+          productos: []
+        };
         jsonObject.resultados.forEach((element, index) => {
+          if (element.length == 0) {
+            this.mensajePedidoError();
+            return false;
+          }
+
+          pedido.encontrado = true;
           element.forEach((subElement, subIndex) => {
-            pedido.push(subElement);
+            pedido.info = subElement;
           });
         });
 
-        console.log("Pedido recuperado desde base de datos:");
-        console.log(pedido);
+        if (pedido.encontrado) {
+          pedido.info.SUBTOTAL = 0;
+          pedido.info.PROPINA = 0;
 
-        if(pedido.length > 0){
-          console.log("Pedido encontrado");
-          localStorage.setItem('pedido_cabecera', JSON.stringify(pedido));
-          console.log("Guardado en localstorage");
+          localStorage.setItem('pedido', JSON.stringify(pedido));
           this.router.navigate(['carta']);
-          /*console.log("Recuperando desde localstorage:");
-          var pedido_cabecera = JSON.parse(localStorage.getItem('pedido_cabecera'));
-          console.log(pedido_cabecera);*/
-        } else {
-          console.log("Pedido no encontrado");
-          this.mensajePedidoError();
         }
       }
     });
   }
 
-  async mensajePedidoError() {
+  async mensajePedidoError(mensaje = '') {
+    mensaje = mensaje || 'La mesa no se ha asignado a ningún pedido, <b>verifique el número ingresado</b> o <b>contacte a un garzón</b>.';
     const alert = await this.alertCtrl.create({
       header: 'Pedido no encontrado',
-      message: 'La mesa no tiene ningún pedido asociado. Verifique que la mesa haya sido asignada correctamente, o ingrese otro N° de mesa.',
-      buttons: [
-        {
-          text: 'Aceptar'
-        }
-      ]
+      message: mensaje,
+      buttons: [{text: 'Aceptar'}]
     });
     await alert.present();
   }

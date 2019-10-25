@@ -80,11 +80,11 @@ export class MenusListPage implements OnInit {
             menu.CANTIDAD = parseInt(alertData.menu_cantidad);
             pedido.productos.push(menu);
 
-            const subtotal = parseInt(pedido.info.subtotal) + parseInt(menu.PRECIO);
+            const subtotal = parseInt(pedido.info.SUBTOTAL) + parseInt(menu.PRECIO);
 
-            pedido.info.subtotal = subtotal;
-            pedido.info.propina  = (subtotal * 0.1).toFixed(0);
-            pedido.info.total    = (subtotal * 1.1).toFixed(0);
+            pedido.info.SUBTOTAL = subtotal;
+            pedido.info.PROPINA  = (subtotal * 0.1).toFixed(0);
+            pedido.info.TOTAL    = (subtotal * 1.1).toFixed(0);
 
             localStorage.setItem('pedido', JSON.stringify(pedido));
             this.alertExitoso();
@@ -101,7 +101,7 @@ export class MenusListPage implements OnInit {
     await alert.present();
   }
 
-  async alertExitoso(){
+  async alertExitoso() {
     const alert = await this.alertCtrl.create({
       header: 'Menú agregado',
       subHeader: '¡Producto agregado!',

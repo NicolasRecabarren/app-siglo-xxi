@@ -28,17 +28,17 @@
   <ion-grid class="info-pedido">
     <ion-row>
       <ion-col size="3">Orden N°</ion-col>
-      <ion-col size="3">103545120</ion-col>
+      <ion-col size="3">00{{pedido.info.ID_PEDIDO}}</ion-col>
       <ion-col size="1"></ion-col>
       <ion-col size="2">Fecha</ion-col>
-      <ion-col size="3">15/10/2019</ion-col>
+      <ion-col size="3">{{pedido.info.FECHA_PEDIDO}}</ion-col>
     </ion-row>
     <ion-row>
       <ion-col size="3">Mesa</ion-col>
-      <ion-col size="3">16</ion-col>
+      <ion-col size="3">{{pedido.info.ID_MESA}}</ion-col>
       <ion-col size="1"></ion-col>
-      <ion-col size="2">Hora</ion-col>
-      <ion-col size="3">14:45:36</ion-col>
+      <ion-col size="2">Com:</ion-col>
+      <ion-col size="3">{{pedido.info.COMENSALES}}</ion-col>
     </ion-row>
   </ion-grid>
 
@@ -59,9 +59,11 @@
     <ion-row>
       <ion-col size="8" class="fixed-padding">Subtotal</ion-col>
       <ion-col size="2" class="fixed-padding"></ion-col>
-      <ion-col size="2" class="fixed-padding text-right">${{pedido.info.subtotal}}</ion-col>
+      <ion-col size="2" class="fixed-padding text-right">${{pedido.info.SUBTOTAL}}</ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-button size="small" expand="full" color="danger" style="margin-top: 25px;">Enviar orden a cocina</ion-button>
+  <ion-button (click)="enviarACocina()" size="small" expand="full" color="danger" style="margin-top: 25px;">
+    Enviar orden a cocina
+  </ion-button>
 </ion-content>
