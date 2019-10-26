@@ -63,15 +63,20 @@ export class ProductListPage implements OnInit {
             if (pedido.productos == null) {
               pedido.productos = [];
             }
-            producto.CANTIDAD = parseInt(alertData.producto_cantidad);
+            producto.TIPO_PEDIDO = 'PLATO';
+            producto.CANTIDAD    = parseInt(alertData.producto_cantidad);
+            producto.TOTAL       = parseInt(producto.PRECIO)*parseInt(producto.CANTIDAD);
+            producto.NOTAS       = alertData.producto_notas;
+            producto.ID_PRODUCTO = 0;
+            producto.ID_MENU     = 0;
+            producto.ID_PLATO    = producto.ID_PLATO;
             pedido.productos.push(producto);
 
-            const subtotal = parseInt(pedido.info.SUBTOTAL) + parseInt(producto.PRECIO);
+            const subtotal = parseInt(pedido.info.SUBTOTAL) + parseInt(producto.TOTAL);
 
             pedido.info.SUBTOTAL = subtotal;
             pedido.info.PROPINA  = (subtotal * 0.1).toFixed(0);
             pedido.info.TOTAL    = (subtotal * 1.1).toFixed(0);
-
 
             localStorage.setItem('pedido', JSON.stringify(pedido));
             this.alertExitoso();
@@ -82,6 +87,11 @@ export class ProductListPage implements OnInit {
         name: 'producto_cantidad',
         type: 'text',
         value: 1
+      }, {
+        name: 'producto_notas',
+        type: 'text',
+        value: '',
+        placeholder: 'Ingresar notas'
       }],
     });
 

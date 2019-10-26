@@ -51,7 +51,7 @@
     <ion-row *ngFor="let producto of pedido.productos">
       <ion-col size="8">{{producto.DESCRIPCION}}</ion-col>
       <ion-col size="2">{{producto.CANTIDAD}}</ion-col>
-      <ion-col size="2" class="text-right">${{producto.PRECIO}}</ion-col>
+      <ion-col size="2" class="text-right">${{producto.TOTAL}}</ion-col>
     </ion-row>
 
     <span class="separador-horizontal"></span>

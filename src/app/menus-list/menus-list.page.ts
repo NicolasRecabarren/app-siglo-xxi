@@ -77,10 +77,16 @@ export class MenusListPage implements OnInit {
             if (pedido.productos == null) {
               pedido.productos = [];
             }
-            menu.CANTIDAD = parseInt(alertData.menu_cantidad);
+            menu.TIPO_PEDIDO = 'MENU';
+            menu.CANTIDAD    = parseInt(alertData.menu_cantidad);
+            menu.TOTAL       = parseInt(menu.PRECIO)*parseInt(menu.CANTIDAD);
+            menu.NOTAS       = alertData.menu_notas;
+            menu.ID_PRODUCTO = 0;
+            menu.ID_MENU     = menu.ID_MENU;
+            menu.ID_PLATO    = 0;
             pedido.productos.push(menu);
 
-            const subtotal = parseInt(pedido.info.SUBTOTAL) + parseInt(menu.PRECIO);
+            const subtotal = parseInt(pedido.info.SUBTOTAL) + parseInt(menu.TOTAL);
 
             pedido.info.SUBTOTAL = subtotal;
             pedido.info.PROPINA  = (subtotal * 0.1).toFixed(0);
@@ -95,6 +101,11 @@ export class MenusListPage implements OnInit {
         name: 'menu_cantidad',
         type: 'text',
         value: 1
+      }, {
+        name: 'menu_notas',
+        type: 'text',
+        value: '',
+        placeholder: 'Ingresar notas'
       }],
     });
 

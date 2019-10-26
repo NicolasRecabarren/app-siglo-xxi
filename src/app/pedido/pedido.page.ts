@@ -30,6 +30,11 @@ export class PedidoPage implements OnInit {
       if (jsonObject.msj == 'OK') {
         this.pedido.info.ID_ESTADO_PEDIDO = 2;
         localStorage.setItem('pedido', JSON.stringify(this.pedido));
+
+        this.pedido.productos.forEach((detalle, index) => {
+          this.pedidoService.ingresarDetalle(detalle,this.pedido.info.ID_PEDIDO).subscribe((response) => {});
+        });
+
         this.mensajePedidoActualizado();
         this.router.navigate(['home']);
       } else {

@@ -11,7 +11,7 @@ export class MenuService {
   getMenus() {
     return this.http.post(
       // URL
-      'http://localhost:8080/ws-restaurante-siglo-xxi/webresources/listar',
+      'http://'+localStorage.getItem('webServiceIP')+':8080/ws-restaurante-siglo-xxi/webresources/listar',
       // Params:
       'procedure=LISTAR_MENU&package=PKG_MANTENEDORES&data=[{param:"IO_CURSOR",tipo_dato:"cursor",tipo_param:"OUT",value:""}]',
       // Headers:
@@ -22,7 +22,7 @@ export class MenuService {
   getDetalleMenu(menuID) {
     return this.http.post(
       // URL
-      'http://localhost:8080/ws-restaurante-siglo-xxi/webresources/listar',
+      'http://'+localStorage.getItem('webServiceIP')+':8080/ws-restaurante-siglo-xxi/webresources/listar',
       // Params:
       'procedure=LISTAR_DETALLE_MENU&package=PKG_MANTENEDORES&data=[{param:"IO_CURSOR",tipo_dato:"cursor",tipo_param:"OUT",value:""},{param:"PID_MENU",tipo_dato:"NUMBER",tipo_param:"IN",value:"'+menuID+'"}]',
       // Headers:

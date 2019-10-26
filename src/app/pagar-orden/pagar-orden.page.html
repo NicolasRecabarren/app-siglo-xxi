@@ -26,17 +26,19 @@
   <ion-grid class="info-pedido">
     <ion-row>
       <ion-col size="3">Orden N°</ion-col>
-      <ion-col size="3">00{{pedido.info.ID_PEDIDO}}</ion-col>
-      <ion-col size="1"></ion-col>
-      <ion-col size="2">Fecha</ion-col>
-      <ion-col size="3">{{pedido.info.FECHA_PEDIDO}}</ion-col>
+      <ion-col size="9">00{{pedido.info.ID_PEDIDO}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3">Fecha</ion-col>
+      <ion-col size="9">{{pedido.info.FECHA_PEDIDO}}</ion-col>
     </ion-row>
     <ion-row>
       <ion-col size="3">Mesa</ion-col>
-      <ion-col size="3">{{pedido.info.ID_MESA}}</ion-col>
-      <ion-col size="1"></ion-col>
-      <ion-col size="2">Com:</ion-col>
-      <ion-col size="3">{{pedido.info.COMENSALES}}</ion-col>
+      <ion-col size="9">{{pedido.info.ID_MESA}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3">Comensales:</ion-col>
+      <ion-col size="9">{{pedido.info.COMENSALES}}</ion-col>
     </ion-row>
   </ion-grid>
 
@@ -49,7 +51,7 @@
     <ion-row *ngFor="let producto of pedido.productos">
       <ion-col size="8">{{producto.DESCRIPCION}}</ion-col>
       <ion-col size="2">{{producto.CANTIDAD}}</ion-col>
-      <ion-col size="2" class="text-right">${{producto.PRECIO}}</ion-col>
+      <ion-col size="2" class="text-right">${{producto.TOTAL}}</ion-col>
     </ion-row>
 
     <span class="separador-horizontal"></span>
@@ -70,6 +72,29 @@
       <ion-col size="3" style="padding-top: 10px;font-weight: bold;font-size: 11px;" class="text-right">${{pedido.info.TOTAL}}</ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-list (ionChange)="cambiaMetodoPago($event)">
+    <ion-radio-group>
+      <ion-list-header>
+        <ion-label>Seleccione el método de pago</ion-label>
+      </ion-list-header>
+  
+      <ion-item>
+        <ion-label>Efectivo</ion-label>
+        <ion-radio slot="start" value="EFECTIVO" checked></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tarjeta de crédito o débito</ion-label>
+        <ion-radio slot="start" value="TARJETA"></ion-radio>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>WebPay</ion-label>
+        <ion-radio slot="start" value="WEBPAY"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
 
   <ion-button size="small" expand="full" color="danger" style="margin-top: 25px;" (click)="pagarOrden($event,'subtotal')">Pagar total</ion-button>
   <ion-button size="small" expand="full" color="danger" (click)="pagarOrden($event,'total')">Pagar total c/ propina</ion-button>

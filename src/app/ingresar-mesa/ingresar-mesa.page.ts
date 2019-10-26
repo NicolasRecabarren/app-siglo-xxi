@@ -14,6 +14,7 @@ export class IngresarMesaPage implements OnInit {
 
   constructor(private mesaService: IngresarMesaService, public router: Router, public alertCtrl: AlertController) {
     localStorage.clear();
+    localStorage.setItem('webServiceIP','25.101.150.208');
   }
 
   recuperar_pedido() {
@@ -30,7 +31,7 @@ export class IngresarMesaPage implements OnInit {
       if (jsonObject.msj == 'OK') {
         let pedido = {
           encontrado: false,
-          info: {},
+          info: {SUBTOTAL:0,PROPINA:0},
           productos: []
         };
         jsonObject.resultados.forEach((element, index) => {
