@@ -48,9 +48,9 @@ export class PedidoService {
       'procedure=ACTUALIZAR_PEDIDO&package=PKG_PEDIDO&data=['+
         '{param:"PID_PEDIDO",tipo_dato:"NUMBER",tipo_param:"IN",value:"'      +pedido.info.ID_PEDIDO       +'"},'+
         '{param:"PID_ESTADO_PEDIDO",tipo_dato:"NUMBER",tipo_param:"IN",value:'+pedido.info.ID_ESTADO_PEDIDO+ '},'+
-        '{param:"PFECHA_PAGO",tipo_dato:"VARCHAR2",tipo_param:"IN",value:'    +pedido.FECHA_PAGO           + '},'+
-        '{param:"PTOTAL",tipo_dato:"NUMBER",tipo_param:"IN",value:'           +pedido.TOTAL                + '},'+
-        '{param:"PMETODO_PAGO",tipo_dato:"VARCHAR2",tipo_param:"IN",value:"'  +pedido.METODO_PAGO          +'"},'+
+        '{param:"PFECHA_PAGO",tipo_dato:"VARCHAR2",tipo_param:"IN",value:"'   +pedido.info.FECHA_PAGO      +'"},'+
+        '{param:"PTOTAL",tipo_dato:"NUMBER",tipo_param:"IN",value:'           +pedido.info.TOTAL           + '},'+
+        '{param:"PMETODO_PAGO",tipo_dato:"VARCHAR2",tipo_param:"IN",value:"'  +pedido.info.METODO_PAGO     +'"}'+
       ']',
       // Headers:
       {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}

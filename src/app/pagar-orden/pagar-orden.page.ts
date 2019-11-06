@@ -30,15 +30,21 @@ export class PagarOrdenPage implements OnInit {
   pagarOrden(event, pagarOpcion) {
     const pedido = JSON.parse(localStorage.getItem('pedido'));
 
-    let monto = pedido.info.TOTAL;
     if (pagarOpcion == 'subtotal') {
-      monto = pedido.info.SUBTOTAL;
+      pedido.info.TOTAL = pedido.info.SUBTOTAL;
     }
 
     // Actualizamos el pedido a estado "Pagado".
     pedido.info.ID_ESTADO_PEDIDO = 4;
+    
+    // Actualizamos la fecha de pago
+    let fecha = new Date().toISOString().split('T')[0];
+    let fechaArray = fecha.split('-');
+    fecha = fechaArray[2]+'/'+(parseInt(fechaArray[1])-1).toString()+'/'+fechaArray[0].substr(2);
+    pedido.info.FECHA_PAGO = fecha;
 
     this.pedidoService.actualizarPedido(pedido).subscribe((response) => {});
+    localStorage.setItem('pedido', JSON.stringify(this.pedido));
 
     if (pedido.info.METODO_PAGO == 'WEBPAY') {
       this.router.navigate(['pagar-orden-webpay']);

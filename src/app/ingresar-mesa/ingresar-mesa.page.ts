@@ -14,7 +14,8 @@ export class IngresarMesaPage implements OnInit {
 
   constructor(private mesaService: IngresarMesaService, public router: Router, public alertCtrl: AlertController) {
     localStorage.clear();
-    localStorage.setItem('webServiceIP','25.101.150.208');
+    //localStorage.setItem('webServiceIP','25.101.150.208');
+    localStorage.setItem('webServiceIP','localhost');
   }
 
   recuperar_pedido() {
