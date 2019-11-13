@@ -98,7 +98,7 @@ export class ProductListPage implements OnInit {
     await alert.present();
   }
 
-  async alertExitoso(){
+  async alertExitoso() {
     const alert = await this.alertCtrl.create({
       header: 'Plato agregado',
       subHeader: '¡Producto agregado!',

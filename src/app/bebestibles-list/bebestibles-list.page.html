@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <div class="brand" style="text-align: left;">
+      <img src="../../assets/img/logo_negro.png" alt="" style="float: right;height: 40px;">
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="header-content">
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col>
+        <ion-button size="small" href="javascript:;" color="light" style="float: right;" (click)="irACarta()">
+          Volver
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <h1>Bebestibles</h1>
+  <ul class="listado-productos">
+      <ion-row *ngFor="let bebestible of bebestibles">
+        <li>
+            <div class="producto-img">
+              <img src="../../assets/img/icono-no-imagen.png" alt="">
+            </div>
+            <div class="producto-informacion">
+              <p class="producto-nombre">{{ bebestible.DESCRIPCION }}</p>
+              <p class="producto-descripcion">Código: {{ bebestible.ID_PRODUCTO }}</p>
+              <span class="producto-precio">Precio: ${{ bebestible.PRECIO_UNITARIO }}</span>
+              <ion-button size="small" (click)="solicitar($event, bebestible)">Solicitar</ion-button>
+            </div>
+          </li>
+      </ion-row>
+  </ul>
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button color="danger" size="small" (click)="irADetallePedido()">
+      <ion-icon name="cart"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

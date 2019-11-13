@@ -67,7 +67,7 @@ export class CartaPage implements OnInit {
   }
 
   irAListaBebestibles() {
-    this.router.navigate(['lista-bebestibles']);
+    this.router.navigate(['bebestibles-list']);
   }
 
   ngOnInit() { }

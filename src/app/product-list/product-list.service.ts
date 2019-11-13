@@ -12,7 +12,7 @@ export class ProductListService {
     return this.http.post(
         // URL
         //'http://localhost:8080/ws-restaurante-siglo-xxi/webresources/listar',
-        'http://'+localStorage.getItem('webServiceIP')+':8080/ws-restaurante-siglo-xxi/webresources/listar',
+        'http://' + localStorage.getItem('webServiceIP') + ':8080/ws-restaurante-siglo-xxi/webresources/listar',
         // Params:
         'procedure=LISTAR_PLATO&package=PKG_MANTENEDORES&data=[{param:"IO_CURSOR",tipo_dato:"cursor",tipo_param:"OUT",value:""}]',
         // Headers:

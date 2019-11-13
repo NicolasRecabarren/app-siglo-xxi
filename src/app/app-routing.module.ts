@@ -18,7 +18,8 @@ const routes: Routes = [
   { path: 'menus-list', loadChildren: './menus-list/menus-list.module#MenusListPageModule' },
   { path: 'pedido', loadChildren: './pedido/pedido.module#PedidoPageModule' },
   { path: 'pagar-orden-webpay', loadChildren: './pagar-orden-webpay/pagar-orden-webpay.module#PagarOrdenWebpayPageModule' },
-  { path: 'pagar-orden-qr', loadChildren: './pagar-orden-qr/pagar-orden-qr.module#PagarOrdenQrPageModule' }
+  { path: 'pagar-orden-qr', loadChildren: './pagar-orden-qr/pagar-orden-qr.module#PagarOrdenQrPageModule' },  { path: 'bebestibles-list', loadChildren: './bebestibles-list/bebestibles-list.module#BebestiblesListPageModule' }
+
 ];
 
 @NgModule({

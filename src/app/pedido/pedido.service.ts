@@ -11,7 +11,7 @@ export class PedidoService {
   actualizarEstadoPedido(pedidoID, nuevoEstado) {
     return this.http.post(
       // URL
-      'http://'+localStorage.getItem('webServiceIP')+':8080/ws-restaurante-siglo-xxi/webresources/listar',
+      'http://' + localStorage.getItem('webServiceIP') + ':8080/ws-restaurante-siglo-xxi/webresources/listar',
       // Params:
       'procedure=ACTUALIZAR_ESTADO_PEDIDO&package=PKG_PEDIDO&data=[{param:"PID_PEDIDO",tipo_dato:"NUMBER",tipo_param:"IN",value:"'+pedidoID+'"},{"param": "PID_ESTADO_PEDIDO","tipo_dato": "NUMBER","tipo_param": "IN","value":'+nuevoEstado+'}]',
       // Headers:
@@ -22,7 +22,7 @@ export class PedidoService {
   ingresarDetalle(detalle, pedidoID) {
     return this.http.post(
       // URL
-      'http://'+localStorage.getItem('webServiceIP')+':8080/ws-restaurante-siglo-xxi/webresources/listar',
+      'http://' + localStorage.getItem('webServiceIP') + ':8080/ws-restaurante-siglo-xxi/webresources/listar',
       // Params:
       'procedure=AGREGAR_DETALLE_PEDIDO&package=PKG_MANTENEDORES&data=['+
         '{param:"PTIPO_PEDIDO",tipo_dato:"VARCHAR2",tipo_param:"IN",value:"'+detalle.TIPO_PEDIDO+'"},'+
@@ -43,14 +43,14 @@ export class PedidoService {
   actualizarPedido(pedido) {
     return this.http.post(
       // URL
-      'http://'+localStorage.getItem('webServiceIP')+':8080/ws-restaurante-siglo-xxi/webresources/listar',
+      'http://' + localStorage.getItem('webServiceIP') + ':8080/ws-restaurante-siglo-xxi/webresources/listar',
       // Params:
       'procedure=ACTUALIZAR_PEDIDO&package=PKG_PEDIDO&data=['+
-        '{param:"PID_PEDIDO",tipo_dato:"NUMBER",tipo_param:"IN",value:"'      +pedido.info.ID_PEDIDO       +'"},'+
-        '{param:"PID_ESTADO_PEDIDO",tipo_dato:"NUMBER",tipo_param:"IN",value:'+pedido.info.ID_ESTADO_PEDIDO+ '},'+
-        '{param:"PFECHA_PAGO",tipo_dato:"VARCHAR2",tipo_param:"IN",value:"'   +pedido.info.FECHA_PAGO      +'"},'+
-        '{param:"PTOTAL",tipo_dato:"NUMBER",tipo_param:"IN",value:'           +pedido.info.TOTAL           + '},'+
-        '{param:"PMETODO_PAGO",tipo_dato:"VARCHAR2",tipo_param:"IN",value:"'  +pedido.info.METODO_PAGO     +'"}'+
+        '{param:"PID_PEDIDO",tipo_dato:"NUMBER",tipo_param:"IN",value:"'      + pedido.info.ID_PEDIDO       + '"},' +
+        '{param:"PID_ESTADO_PEDIDO",tipo_dato:"NUMBER",tipo_param:"IN",value:'+ pedido.info.ID_ESTADO_PEDIDO+  '},' +
+        '{param:"PFECHA_PAGO",tipo_dato:"VARCHAR2",tipo_param:"IN",value:"'   + pedido.info.FECHA_PAGO      + '"},' +
+        '{param:"PTOTAL",tipo_dato:"NUMBER",tipo_param:"IN",value:'           + pedido.info.TOTAL           +  '},' +
+        '{param:"PMETODO_PAGO",tipo_dato:"VARCHAR2",tipo_param:"IN",value:"'  + pedido.info.METODO_PAGO     + '"}'  +
       ']',
       // Headers:
       {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
