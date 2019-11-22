@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuService } from './menu.service';
 import { AlertController } from '@ionic/angular';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-menus-list',
@@ -12,7 +13,7 @@ export class MenusListPage implements OnInit {
 
   public menus: any;
 
-  constructor(public router: Router, private menuService: MenuService, public alertCtrl: AlertController) {
+  constructor(public router: Router, private menuService: MenuService, public alertCtrl: AlertController, public _sanitizer: DomSanitizer) {
 
     // Vamos a buscar los menús y su detalle de productos correspondiente.
     this.menuService.getMenus().subscribe((responseMenus) => {
@@ -40,6 +41,13 @@ export class MenusListPage implements OnInit {
                 subElement.detalle = detalleAux;
               }
             });
+
+            if(subElement.IMG_EXTENSION == null || subElement.IMG_EXTENSION == "" || subElement.IMAGEN == null || subElement.IMAGEN == ""){
+              subElement.IMAGEN = "../../assets/img/carta-menus.jpg";
+            } else {
+              subElement.IMAGEN = subElement.IMG_EXTENSION+subElement.IMAGEN
+            }
+
             menusAux.push(subElement);
           });
         });

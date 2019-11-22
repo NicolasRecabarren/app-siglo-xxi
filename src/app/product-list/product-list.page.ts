@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductListService } from './product-list.service';
 import { AlertController } from '@ionic/angular';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-list',
@@ -16,7 +17,7 @@ export class ProductListPage implements OnInit {
   public productosSolicitados: any;
 
   // tslint:disable-next-line: max-line-length
-  constructor(private productService: ProductListService, private route: ActivatedRoute, private router: Router, public alertCtrl: AlertController) {
+  constructor(private productService: ProductListService, private route: ActivatedRoute, private router: Router, public alertCtrl: AlertController,public _sanitizer: DomSanitizer) {
     this.productosSolicitados = JSON.parse(localStorage.getItem('pedido'));
     if (!this.productosSolicitados) {
       this.productosSolicitados = [];
@@ -33,6 +34,13 @@ export class ProductListPage implements OnInit {
         const productosAux = [];
         jsonObject.resultados.forEach((element, index) => {
           element.forEach((subElement, subIndex) => {
+
+            if(subElement.IMG_EXTENSION == null || subElement.IMG_EXTENSION == "" || subElement.IMAGEN == null || subElement.IMAGEN == ""){
+              subElement.IMAGEN = "../../assets/img/icono-no-imagen.png";
+            } else {
+              subElement.IMAGEN = subElement.IMG_EXTENSION+subElement.IMAGEN
+            }
+
             productosAux.push(subElement);
           });
         });

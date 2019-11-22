@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BebestiblesService } from './bebestibles.service';
 import { AlertController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-bebestibles-list',
@@ -14,7 +15,7 @@ export class BebestiblesListPage implements OnInit {
   public categoriasVendibles: any;
 
   // tslint:disable-next-line: max-line-length
-  constructor(private bebestiblesService: BebestiblesService, private alert: AlertController, private route: ActivatedRoute, private router: Router) {
+  constructor(private bebestiblesService: BebestiblesService, private alert: AlertController, private route: ActivatedRoute, private router: Router, public _sanitizer: DomSanitizer) {
 
     // Vamos a buscar las categorías vendibles de los productos.
     this.bebestiblesService.getCategoriasBebestibles().subscribe((response) => {
@@ -41,6 +42,13 @@ export class BebestiblesListPage implements OnInit {
             jsonObject.resultados.forEach((element, index) => {
               element.forEach((subElement, subIndex) => {
                 if (this.categoriasVendibles.indexOf(subElement.ID_CATEGORIA) != -1) {
+                  
+                  if(subElement.IMG_EXTENSION == null || subElement.IMG_EXTENSION == "" || subElement.IMAGEN == null || subElement.IMAGEN == ""){
+                    subElement.IMAGEN = "../../assets/img/icono-no-imagen.png";
+                  } else {
+                    subElement.IMAGEN = subElement.IMG_EXTENSION+subElement.IMAGEN
+                  }
+
                   bebestiblesAux.push(subElement);
                 }
               });

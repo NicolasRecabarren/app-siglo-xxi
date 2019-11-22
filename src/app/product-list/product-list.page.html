@@ -26,7 +26,8 @@
       <ion-row *ngFor="let producto of productosFiltrados">
         <li>
             <div class="producto-img">
-              <img src="../../assets/img/icono-no-imagen.png" alt="">
+              <img [src]="_sanitizer.bypassSecurityTrustResourceUrl(producto.IMAGEN)" />
+              <!--<img src="../../assets/img/icono-no-imagen.png" alt="">-->
             </div>
             <div class="producto-informacion">
               <p class="producto-nombre">{{ producto.DESCRIPCION }}</p>
